@@ -1,0 +1,4 @@
+{
+    "python.formatting.provider": "autopep8",
+    "python.pythonPath": "e:\\Tools\\manga_tool\\env\\Scripts\\python.exe"
+}
