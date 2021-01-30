@@ -3,10 +3,10 @@
 block_cipher = None
 
 
-a = Analysis(['E:\\Tools\\manga_tool\\app.py'],
+a = Analysis(['E:/Tools/manga_tool/app.py'],
              pathex=['E:\\Tools\\manga_tool'],
              binaries=[],
-             datas=[('E:\\Tools\\manga_tool\\pocket.py', '.py')],
+             datas=[('E:/Tools/manga_tool/pocket.py', '.function/'), ('E:/Tools/manga_tool/cookie.txt', './'), ('E:/Tools/manga_tool/logo.ico', './')],
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
@@ -26,7 +26,7 @@ exe = EXE(pyz,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          console=False )
+          console=False , icon='E:\\Tools\\manga_tool\\logo.ico')
 coll = COLLECT(exe,
                a.binaries,
                a.zipfiles,
