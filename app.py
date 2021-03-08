@@ -7,12 +7,15 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from pocket import find_image
+from pocket import find_image_pocket
+from comicDays import find_image_comic_days
 import time
 
 note = """Note: 
 * If this app is not responding after click "Get Image!", this app is still working in process. 
-You can check download process in the Save Location Folder."""
+You can check download process in the Save Location Folder.
+* Made by Mai Heaven
+"""
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -47,7 +50,7 @@ class Ui_MainWindow(object):
         self.status.setObjectName("status")
         self.setColor(self.status, "green")
         self.note = QtWidgets.QLabel(self.centralwidget)
-        self.note.setGeometry(QtCore.QRect(40, 260, 550, 60))
+        self.note.setGeometry(QtCore.QRect(40, 260, 550, 64))
         self.note.setObjectName("note")
         self.note.setStyleSheet("background-color: white")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -58,6 +61,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Funny App"))
+        MainWindow.setWindowIcon(QtGui.QIcon('logo.ico'))
         self.submitbtn.setText(_translate("MainWindow", "Get Image!"))
         self.quitbtn.setText(_translate("MainWindow", "Quit"))
         self.statuslb.setText(_translate("MainWindow", "Status: "))
@@ -75,7 +79,7 @@ class Ui_MainWindow(object):
         self.status.setText("Waiting")
         self.setColor(self.status, "yellow")
         url = self.urltxt.toPlainText()
-        if find_image(url, dirPath):
+        if self.checkLink():
             self.status.setText("Done!")
             self.setColor(self.status, "green")
         else:
@@ -94,6 +98,15 @@ class Ui_MainWindow(object):
         pal = label.palette()
         pal.setColor(QtGui.QPalette.WindowText, QtGui.QColor(color))
         label.setPalette(pal)
+
+    def checkLink(self):
+        url = self.urltxt.toPlainText()
+        dirPath = self.dirFilelb.text()
+        if "comic-days" in url:
+            return find_image_comic_days(url, dirPath)
+        else:
+            return find_image_pocket(url,dirPath)
+
 
 if __name__ == "__main__":
     import sys

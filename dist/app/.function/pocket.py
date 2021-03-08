@@ -48,7 +48,7 @@ import urllib
 #         image.save(fullnewfilename)
 #     return True
 
-def find_image(url, dirName):
+def find_image_pocket(url, dirName):
     try:
         try:
             with open('cookie.txt') as f:
